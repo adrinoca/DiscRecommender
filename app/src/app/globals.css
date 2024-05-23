@@ -31,6 +31,12 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+.controlled-image {
+  width: 10000px; 
+  height: 400px;
+  object-fit: cover;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
