@@ -31,9 +31,16 @@ body {
     rgb(var(--background-start-rgb));
 }
 
-.controlled-image {
+.controlled-horizontal-image {
   width: 10000px; 
   height: 400px;
+  object-fit: cover;
+}
+
+.controlled-image {
+  width: 100%;
+  height: auto;
+  max-height: 600px; /* Puedes ajustar este valor según tus necesidades */
   object-fit: cover;
 }
 

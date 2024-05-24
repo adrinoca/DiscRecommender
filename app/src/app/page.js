@@ -25,12 +25,12 @@ export default function Home() {
 
       <header className="w-full bg-white py-8 flex flex-col items-center">
         <div className="w-full flex justify-center mb-4 px-6">
-          <img src="/bw_minimalist.jpeg" alt="Controlled Image" className="controlled-image"/>
+          <img src="/bw_minimalist.jpeg" alt="Controlled Image" className="controlled-horizontal-image"/>
         </div>
-        <div className="flex w-full px-6 mt-14"> 
+        <div className="flex w-full px-6 mt-16"> 
           <div className="flex flex-1 items-center justify-center">
             <h1 className="text-5xl font-bold text-black mb-4 leading-tight">
-              Discover Your Perfect<br />Music Style Today
+              Discover Your Perfect<br />Music Style for Today
             </h1>
           </div>
           <div className="flex flex-col items-start flex-1 justify-center">
@@ -52,24 +52,26 @@ export default function Home() {
       <section className="w-full bg-white py-16 flex flex-col items-center">
         <div className="flex w-full px-6">
           <div className="flex flex-1 items-center justify-center">
-            <div className="w-full h-64 bg-gray-300 flex items-center justify-center">
-              {/* Placeholder for the image */}
-              <span className="text-gray-500">Image Placeholder</span>
+            <div className="w-full flex items-center justify-center">
+              <img src="/vinyl.jpeg" alt="Controlled Image"/>
             </div>
           </div>
           <div className="flex flex-col items-start flex-1 justify-center space-y-6">
-            <div>
+            <div className="flex items-center space-x-2">
+              <div className="h-8 w-1 bg-black"></div>
               <h2 className="text-2xl font-bold text-black">Choose from 25 styles</h2>
-              <p className="text-gray-700">Discover new albums and explore a wide range of music genres.</p>
             </div>
-            <div>
+            <p className="text-gray-700">Discover new albums and explore a wide range of music genres.</p>
+            <div className="flex items-center space-x-2">
+              <div className="h-8 w-1 bg-black"></div>
               <h2 className="text-2xl font-bold text-black">Review and track favorites</h2>
-              <p className="text-gray-700">Share your thoughts and ratings on albums you've listened to, and easily keep track of your favorite albums.</p>
             </div>
-            <div>
+            <p className="text-gray-700">Share your thoughts and ratings on albums you've listened to, and easily keep track of your favorite albums.</p>
+            <div className="flex items-center space-x-2">
+              <div className="h-8 w-1 bg-black"></div>
               <h2 className="text-2xl font-bold text-black">Personalized recommendations</h2>
-              <p className="text-gray-700">Receive tailored recommendations based on your music preferences and discover new albums you'll love.</p>
             </div>
+            <p className="text-gray-700">Receive tailored recommendations based on your music preferences and discover new albums you'll love.</p>
           </div>
         </div>
       </section>
