@@ -44,6 +44,10 @@ body {
   object-fit: cover;
 }
 
+.slick-prev:before, .slick-next:before {
+  color: black; /* Cambia el color de las flechas de navegación del carrusel */
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
