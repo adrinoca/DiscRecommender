@@ -40,7 +40,7 @@ body {
 .controlled-image {
   width: 100%;
   height: auto;
-  max-height: 600px; /* Puedes ajustar este valor según tus necesidades */
+  max-height: 600px; 
   object-fit: cover;
 }
 
