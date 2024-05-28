@@ -1,3 +1,4 @@
+
 import MusicStyles from "@/components/MusicStyles";
 
 export default function Home() {
