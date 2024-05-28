@@ -53,3 +53,32 @@ body {
     text-wrap: balance;
   }
 }
+
+.image-container {
+  position: relative;
+  cursor: pointer;
+}
+
+.image-container .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  color: white;
+  font-size: 24px;
+  transition: opacity 0.3s;
+  opacity: 0;
+}
+
+.image-container:hover .overlay {
+  opacity: 1;
+}
+
+.image-container img {
+  transition: opacity 0.3s;
+}

@@ -4,9 +4,9 @@ import { useState } from "react";
 
 export default function MusicStyles() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [hover, setHover] = useState(false);
   const images = [
     '/r&r.jpg',
-    '/vinyl.jpeg', // Asegúrate de que las rutas y los nombres de archivo están correctos.
   ];
 
   const nextImage = () => {
@@ -19,12 +19,21 @@ export default function MusicStyles() {
 
   return (
     <section className="w-full bg-white py-16 flex flex-col items-center">
-      <h2 className="text-5xl font-bold text-black mb-4">Music Styles</h2>
-      <p className="text-xl text-gray-700 mb-8">Explore our diverse collection of music styles.</p>
+      <h2 className="text-5xl font-bold text-black mb-8">Music Styles</h2>
+      <p className="text-xl text-gray-700 mb-12">Explore our diverse collection of music styles.</p>
       <div className="w-full flex justify-center">
         <div className="w-full max-w-4xl flex justify-between items-center">
           <button onClick={prevImage} className="text-black font-bold">&#60;</button>
-          <img src={images[currentIndex]} alt="Music Styles" className="w-full"/>
+          <div
+            className="image-container w-full"
+            onMouseEnter={() => setHover(true)}
+            onMouseLeave={() => setHover(false)}
+          >
+            <img src={images[currentIndex]} alt="Music Styles" className="w-full"/>
+            <div className={`overlay ${hover ? 'block' : 'hidden'}`}>
+              <p className="text">Hover Text</p>
+            </div>
+          </div>
           <button onClick={nextImage} className="text-black font-bold">&#62;</button>
         </div>
       </div>
