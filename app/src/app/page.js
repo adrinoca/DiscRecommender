@@ -1,3 +1,5 @@
+import MusicStyles from "@/components/MusicStyles";
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-white">
@@ -76,15 +78,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full bg-white py-16 flex flex-col items-center">
-        <h2 className="text-5xl font-bold text-black mb-4">Music Styles</h2>
-        <p className=" text-1xl text-gray-700 mb-8">Explore our diverse collection of music styles.</p>
-        <div className="w-full flex justify-center">
-          <div className="w-full max-w-4xl">
-            <img src="/placeholder-image.png" alt="Music Styles" className="w-full"/>
-          </div>
-        </div>
-      </section>
+      <MusicStyles />
 
     </main>
   );
