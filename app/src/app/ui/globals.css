@@ -23,12 +23,7 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background-color: #ffffff;
 }
 
 .controlled-horizontal-image {
@@ -82,3 +77,12 @@ body {
 .image-container img {
   transition: opacity 0.3s;
 }
+
+.container {
+  @apply mx-auto px-4;
+}
+
+.footer {
+  @apply mt-16;
+}
+

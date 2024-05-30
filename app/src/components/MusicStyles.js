@@ -18,7 +18,7 @@ export default function MusicStyles() {
   };
 
   return (
-    <section id="Genres" className="w-full bg-white py-16 flex flex-col items-center">
+    <section id="Genres" className="w-full py-16 flex flex-col items-center">
       <h2 className="text-4xl font-bold text-black mb-8">Music Styles</h2>
       <p className="text-base text-gray-700 mb-12">Explore our diverse collection of music styles.</p>
       <div className="w-full flex justify-center">

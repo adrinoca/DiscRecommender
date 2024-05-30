@@ -3,8 +3,8 @@ import MusicStyles from "@/components/MusicStyles";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white">
-      <nav className="w-full bg-white">
+    <main className="min-h-screen">
+      <nav className="w-full">
         <div className="flex items-center justify-between px-6 py-3">
           <div className="flex items-center">
             <div className="text-2xl font-bold text-black ml-6 mr-8">Logo</div>
@@ -26,7 +26,7 @@ export default function Home() {
         </div>
       </nav>
 
-      <header className="w-full bg-white py-8 flex flex-col items-center">
+      <header className="w-full py-8 flex flex-col items-center">
         <div className="w-full flex justify-center mb-4 px-6">
           <img src="/bw_minimalist.jpeg" alt="Controlled Image" className="controlled-horizontal-image"/>
         </div>
@@ -52,7 +52,7 @@ export default function Home() {
         </div>
       </header>
 
-      <section className="w-full bg-white py-16 flex flex-col items-center">
+      <section className="w-full py-16 flex flex-col items-center">
         <div className="flex w-full px-6">
           <div className="flex flex-1 items-center justify-center">
             <div className="w-full flex items-center justify-center">
