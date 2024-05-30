@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function Footer() {
     return (
       <footer className="w-full bg-white py-4 pb-8">
@@ -6,7 +8,9 @@ export default function Footer() {
           <div className="flex space-x-8">
             <p className="text-gray-600">© 2024 Relume. All rights reserved.</p> 
             <a href="#" className="text-gray-600">Privacy Policy</a> 
-            <a href="#" className="text-gray-600">Terms and Conditions</a> 
+            <Link href="/terms" legacyBehavior>
+                <a className="text-gray-600">Terms and Conditions</a> 
+            </Link>
             <a href="#" className="text-gray-600">Cookie Policy</a>
           </div>
         </div>
