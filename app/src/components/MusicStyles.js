@@ -18,9 +18,9 @@ export default function MusicStyles() {
   };
 
   return (
-    <section className="w-full bg-white py-16 flex flex-col items-center">
-      <h2 className="text-5xl font-bold text-black mb-8">Music Styles</h2>
-      <p className="text-xl text-gray-700 mb-12">Explore our diverse collection of music styles.</p>
+    <section id="Genres" className="w-full bg-white py-16 flex flex-col items-center">
+      <h2 className="text-3xl font-bold text-black mb-8">Music Styles</h2>
+      <p className="text-base text-gray-700 mb-12">Explore our diverse collection of music styles.</p>
       <div className="w-full flex justify-center">
         <div className="w-full max-w-4xl flex justify-between items-center">
           <button onClick={prevImage} className="text-black font-bold">&#60;</button>
@@ -31,7 +31,7 @@ export default function MusicStyles() {
           >
             <img src={images[currentIndex]} alt="Music Styles" className="w-full"/>
             <div className={`overlay ${hover ? 'block' : 'hidden'}`}>
-              <p className="text">Hover Text</p>
+              <p className="text">Rock & Roll</p>
             </div>
           </div>
           <button onClick={nextImage} className="text-black font-bold">&#62;</button>
