@@ -1,4 +1,4 @@
-
+import Link from 'next/link';
 import MusicStyles from "@/components/MusicStyles";
 
 export default function Home() {
@@ -41,9 +41,9 @@ export default function Home() {
               Welcome to our website, where you can choose from 25 different music styles and explore a world of diverse albums.
             </p>
             <div className="flex space-x-4">
-              <button className="px-6 py-2 border border-black text-white bg-black hover:bg-gray-800">
-                Get Started
-              </button>
+              <Link href='/style-list' className="px-6 py-2 border border-black text-white bg-black hover:bg-gray-800">
+                  Get Started
+              </Link>
               <button className="px-6 py-2 border border-gray-700 text-gray-700 bg-white hover:bg-gray-100">
                 Learn More
               </button>
