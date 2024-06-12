@@ -1,4 +1,6 @@
+'use client'
 import Head from 'next/head';
+import { useState } from 'react';
 
 export default function MusicStyles() {
   const styles = [
@@ -20,7 +22,28 @@ export default function MusicStyles() {
     { emoji: '🤓', label: 'THOUGHTFUL' },
     { emoji: '🤪', label: 'THRILL-SEEKING' },
     { emoji: '😏', label: 'PLAYFUL' },
+    { emoji: '😏', label: 'PLAYFUL' },
+    { emoji: '😏', label: 'PLAYFUL' },
   ];
+
+  const [selectedIndexes, setSelectedIndexes] = useState([]);
+
+  const handleSelect = (index) => {
+    let newSelectedIndexes = [...selectedIndexes];
+
+    if (newSelectedIndexes.includes(index)) {
+      // If the index is already selected, delete it
+      newSelectedIndexes = newSelectedIndexes.filter(i => i !== index);
+    } else {
+      if (newSelectedIndexes.length === 2) {
+        // If there are two selected, delete the first one
+        newSelectedIndexes.shift();
+      }
+      newSelectedIndexes.push(index);
+    }
+
+    setSelectedIndexes(newSelectedIndexes);
+  };
 
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col items-center justify-center text-gray-900">
@@ -31,15 +54,17 @@ export default function MusicStyles() {
       <p className="mb-8 text-lg">How are you feeling now?</p>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 px-4">
         {styles.map((style, index) => (
-          <div key={index} className="bg-white border border-gray-300 p-4 rounded-lg text-center shadow-sm hover:shadow-md transition-shadow duration-300 cursor-pointer">
+          <div
+            key={index}
+            className={`p-4 rounded-lg text-center shadow-sm cursor-pointer transition-shadow duration-300
+              ${selectedIndexes.includes(index) ? 'bg-blue-200 border-blue-400' : 'bg-white border-gray-300'}`}
+            onClick={() => handleSelect(index)}
+          >
             <div className="text-3xl">{style.emoji}</div>
             <div className="mt-2 font-semibold text-gray-700">{style.label}</div>
           </div>
         ))}
       </div>
-      <footer className="mt-16">
-        <p className="text-gray-600">Made with 🎵 by [Your Name]</p>
-      </footer>
     </div>
   );
 }
