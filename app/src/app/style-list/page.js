@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import Head from 'next/head';
 import { useState } from 'react';
 
@@ -22,8 +22,6 @@ export default function MusicStyles() {
     { emoji: '🤓', label: 'THOUGHTFUL' },
     { emoji: '🤪', label: 'THRILL-SEEKING' },
     { emoji: '😏', label: 'PLAYFUL' },
-    { emoji: '😏', label: 'PLAYFUL' },
-    { emoji: '😏', label: 'PLAYFUL' },
   ];
 
   const [selectedIndexes, setSelectedIndexes] = useState([]);
@@ -32,11 +30,9 @@ export default function MusicStyles() {
     let newSelectedIndexes = [...selectedIndexes];
 
     if (newSelectedIndexes.includes(index)) {
-      // If the index is already selected, delete it
       newSelectedIndexes = newSelectedIndexes.filter(i => i !== index);
     } else {
       if (newSelectedIndexes.length === 2) {
-        // If there are two selected, delete the first one
         newSelectedIndexes.shift();
       }
       newSelectedIndexes.push(index);
@@ -45,25 +41,41 @@ export default function MusicStyles() {
     setSelectedIndexes(newSelectedIndexes);
   };
 
+  const handleSubmit = () => {
+    alert('Selected styles: ' + selectedIndexes.map(index => styles[index].label).join(', '));
+  };
+
   return (
-    <div className="bg-gray-100 min-h-screen flex flex-col items-center justify-center text-gray-900">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-pink-100 via-white to-blue-100 text-gray-900">
       <Head>
         <title>Discover Music Based on Your Mood</title>
       </Head>
-      <h1 className="text-4xl font-extrabold mb-8">Discover top-rated music based on your mood</h1>
-      <p className="mb-8 text-lg">How are you feeling now?</p>
+      <h1 className="text-4xl font-extrabold mb-8 text-gray-800">Discover top-rated music based on your favorite styles</h1>
+      <p className="mb-8 text-lg text-gray-600">Which styles do you like?</p>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 px-4">
         {styles.map((style, index) => (
           <div
             key={index}
-            className={`p-4 rounded-lg text-center shadow-sm cursor-pointer transition-shadow duration-300
-              ${selectedIndexes.includes(index) ? 'bg-blue-200 border-blue-400' : 'bg-white border-gray-300'}`}
+            className={`p-4 rounded-xl text-center shadow-md cursor-pointer transition-all duration-300 transform hover:scale-105
+              ${selectedIndexes.includes(index) ? 'bg-pastel-blue border-blue-300' : 'bg-pastel-gray border-gray-200'}`}
             onClick={() => handleSelect(index)}
           >
-            <div className="text-3xl">{style.emoji}</div>
-            <div className="mt-2 font-semibold text-gray-700">{style.label}</div>
+            <div className="text-4xl">{style.emoji}</div>
+            <div className="mt-2 font-semibold text-gray-800">{style.label}</div>
           </div>
         ))}
+      </div>
+
+      <div className="mt-8">
+        <button
+          onClick={handleSubmit}
+          disabled={selectedIndexes.length === 0}
+          className={`px-6 py-3 rounded-full text-white transition-all duration-300 shadow-lg transform ${
+            selectedIndexes.length === 0 ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-600 hover:scale-105'
+          }`}
+        >
+          Enviar
+        </button>
       </div>
     </div>
   );
