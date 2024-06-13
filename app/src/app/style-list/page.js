@@ -1,6 +1,7 @@
 'use client';
 import Head from 'next/head';
 import { useState } from 'react';
+import axios from 'axios';
 
 export default function MusicStyles() {
   const styles = [
@@ -41,10 +42,20 @@ export default function MusicStyles() {
     setSelectedIndexes(newSelectedIndexes);
   };
 
-  const handleSubmit = () => {
-    const selecteGenres = selectedIndexes.map(index => styles[index.label]);
-    const redirectUri = 'http://localhost:3000/callback';
-    const clientID = 
+  const handleSubmit = async () => {
+    const selectedGenres = selectedIndexes.map(index => styles[index.label]);
+
+    // Obtain access token
+    const tokenResponse = await axios.post('/api/token');
+    const { access_token } = tokenResponse.data;
+
+    // Request to optain the albums
+    const albumsResponse = await axios.get(`/api/fetch-albums?access_token=${access_token}&genres=${selectedGenres.join(',')}`);
+    console.log(albumsResponse.data); 
+    
+    // Redirect to albums page
+    sessionStorage.setItem('albums', JSON.stringify(albumsResponse.data);
+    window.location.href = '/albums';
   };
 
   return (
