@@ -42,7 +42,9 @@ export default function MusicStyles() {
   };
 
   const handleSubmit = () => {
-    alert('Selected styles: ' + selectedIndexes.map(index => styles[index].label).join(', '));
+    const selecteGenres = selectedIndexes.map(index => styles[index.label]);
+    const redirectUri = 'http://localhost:3000/callback';
+    const clientID = 
   };
 
   return (
