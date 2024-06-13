@@ -46,7 +46,7 @@ export default function MusicStyles() {
     const selectedGenres = selectedIndexes.map(index => styles[index.label]);
 
     // Obtain access token
-    const tokenResponse = await axios.post('/api/token');
+    const tokenResponse = await axios.post('/api/get-token');
     const { access_token } = tokenResponse.data;
 
     // Request to optain the albums
