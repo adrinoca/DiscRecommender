@@ -43,10 +43,11 @@ export default function MusicStyles() {
   };
 
   const handleSubmit = async () => {
-    const selectedGenres = selectedIndexes.map(index => styles[index.label]);
+    const selectedGenres = selectedIndexes.map(index => styles[index].label);
 
     // Obtain access token
     const tokenResponse = await axios.post('/api/get-token');
+    console.log('Handling request for /api/get-token');
     const { access_token } = tokenResponse.data;
 
     // Request to optain the albums
@@ -54,7 +55,7 @@ export default function MusicStyles() {
     console.log(albumsResponse.data); 
     
     // Redirect to albums page
-    sessionStorage.setItem('albums', JSON.stringify(albumsResponse.data);
+    sessionStorage.setItem('albums', JSON.stringify(albumsResponse.data));
     window.location.href = '/albums';
   };
 
