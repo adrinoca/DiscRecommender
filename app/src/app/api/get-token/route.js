@@ -1,6 +1,7 @@
 // Get Token
 
 import axios from 'axios';
+import 'dotenv/config';
 
 export async function POST(req) {
   console.log('Received request for /api/get-token');
@@ -8,7 +9,7 @@ export async function POST(req) {
   const clientId = process.env.SPOTIFY_CLIENT_ID;
   const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
 
-  if (!process.env.SPOTIFY_CLIENT_ID || !process.env.SPOTIFY_CLIENT_SECRET) {
+  if (!clientId || !clientSecret) {
     console.error('Spotify Client ID or Secret is missing');
     return new Response(JSON.stringify({ error: 'Client ID or Secret not set' }), {
       status: 500,
