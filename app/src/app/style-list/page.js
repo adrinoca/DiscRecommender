@@ -47,7 +47,6 @@ export default function MusicStyles() {
 
     // Obtain access token
     const tokenResponse = await axios.post('/api/get-token');
-    console.log('Handling request for /api/get-token');
     const { access_token } = tokenResponse.data;
 
     // Request to optain the albums

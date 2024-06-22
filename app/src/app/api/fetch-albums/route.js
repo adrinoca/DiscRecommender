@@ -19,3 +19,19 @@ export default async function handler(req, res) {
     }
 
 }
+
+export async function GET(req, res) {
+    // Obtain request parameters
+    const { searchParams } = new URL(req.url, 'https://${req.headers.host}'); 
+    const access_token = searchParams.get('access_token');
+    const genres = searchParams.get('genres') ? searchParams.get('get').split(',');
+
+    // Verify that the access token and the genres are present
+    if (!access_token || genres.length === 0) {
+        return new Response(JSON.stringify({error: 'Access token and genres are required'}), {
+            status:400, 
+            headers: {'Content-Type': 'application/json'},
+        });
+    }
+
+}
