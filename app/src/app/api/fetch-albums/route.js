@@ -25,21 +25,24 @@ export async function GET(req, res) {
 
     try {
         const genre = genres[0]; // Last.fm solo permite buscar por un género a la vez
-        const apiKey = process.env.LAST_FM_API_KEY; // Asegúrate de configurar esta clave en tus variables de entorno
+        const apiKey = process.env.LAST_FM_API_KEY; 
 
         // Realizar la solicitud a la API de Last.fm
-        const response = await axios.get(`http://ws.audioscrobbler.com/2.0/?method=tag.gettopalbums&tag=${encodeURIComponent(genre)}&api_key=${apiKey}&format=json`);
+        const response = await axios.get(`http://ws.audioscrobbler.com/2.0/?method=tag.gettopalbums&tag=${encodeURIComponent(genre)}&api_key=${apiKey}&format=json&limit=200`);
 
-        const albums = response.data.albums.album.slice(0, 5).map(album => ({
-            name: album.name,
-            artist: album.artist.name,
-            url: album.url,
-            image: album.image.find(img => img.size === 'large')['#text'],
-        }));
+        const albums = response.data.albums.album;
+        const randomAlbums = [];
 
-        console.log(albums);
+        // Seleccionar aleatoriamente 5 álbumes de la lista
+        while (randomAlbums.length < 5 && albums.length > 0) {
+            const index = Math.floor(Math.random() * albums.length);
+            randomAlbums.push(albums[index]);
+            albums.splice(index, 1);
+        }
 
-        if (albums.length === 0) {
+        console.log(randomAlbums);
+
+        if (randomAlbums.length === 0) {
             return new Response(JSON.stringify({ error: 'No albums found for the specified genre' }), {
                 status: 404,
                 headers: { 'Content-Type': 'application/json' },
@@ -47,7 +50,7 @@ export async function GET(req, res) {
         }
 
         // Enviar la respuesta con los álbumes
-        return new Response(JSON.stringify(albums), {
+        return new Response(JSON.stringify(randomAlbums), {
             status: 200,
             headers: { 'Content-Type': 'application/json' },
         });
