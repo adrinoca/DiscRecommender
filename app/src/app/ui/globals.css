@@ -86,3 +86,30 @@ body {
   @apply mt-16;
 }
 
+.text-pastel-blue {
+  color: #AEC6CF; 
+}
+
+.bg-pastel-blue {
+  background-color: #AEC6CF;
+}
+
+.text-pastel-cream {
+  color: #FFFDD0;
+}
+
+.bg-pastel-cream {
+  background-color: #FFFDD0;
+}
+
+.text-pastel-pink {
+  color: #FFB6C1; 
+}
+
+.bg-pastel-pink {
+  background-color: #FFB6C1;
+}
+
+.bg-gradient-to-br {
+  background-image: linear-gradient(to bottom right, #FFB6C1, #FFFDD0, #AEC6CF);
+}
