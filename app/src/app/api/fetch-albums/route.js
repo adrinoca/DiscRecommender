@@ -30,12 +30,16 @@ export async function GET(req, res) {
             'Authorization': `Bearer ${access_token}`,
           },
         });
-    
+        
+        // Response
+         console.log('Respuesta de Spotify:', response.data.albums);
+
         // Send the response with the albums
         return new Response(JSON.stringify(response.data.albums.items), {
           status: 200,
           headers: { 'Content-Type': 'application/json' },
         });
+
       } catch (error) {
         // Manejar errores de manera específica
         if (error.response) {
