@@ -46,11 +46,12 @@ export default function MusicStyles() {
     const selectedGenres = selectedIndexes.map(index => styles[index].label);
 
     // Obtain access token
-    const tokenResponse = await axios.post('/api/get-token');
-    const { access_token } = tokenResponse.data;
+    //const tokenResponse = await axios.post('/api/get-token');
+    // const { access_token } = tokenResponse.data;
 
     // Request to optain the albums
-    const albumsResponse = await axios.get(`/api/fetch-albums?access_token=${access_token}&genres=${selectedGenres.join(',')}`);
+    //const albumsResponse = await axios.get(`/api/fetch-albums?access_token=${access_token}&genres=${selectedGenres.join(',')}`);
+    const albumsResponse = await axios.get(`/api/fetch-albums?genres=${selectedGenres.join(',')}`);
     console.log(albumsResponse.data); 
     
     // Redirect to albums page

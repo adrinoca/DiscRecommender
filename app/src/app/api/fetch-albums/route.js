@@ -5,15 +5,15 @@ import axios from 'axios';
 export async function GET(req, res) {
     // Obtain request parameters
     const { searchParams } = new URL(req.url, `http://${req.headers.host}`); 
-    const access_token = searchParams.get('access_token');
+    // const access_token = searchParams.get('access_token');
     const genresParam = searchParams.get('genres');
 
     // Verify that the access token and the genres are present
-    if (!access_token || !genresParam) {
-        return res.status(400).json({error: 'Access token and genres are required'});
+    if (!genresParam) {
+        return res.status(400).json({error: 'Genres are required'});
     }
 
-    // Verificar y dividir la cadena de géneros
+    // Verify and split the genres chain
     const genres = genresParam ? genresParam.split(',') : [];
 
     if (genres.length === 0) {
@@ -21,35 +21,51 @@ export async function GET(req, res) {
     }
 
     // Build the search query
-    const searchQuery = genres.map( genre => `genre:${genre}`).join(' OR ');
+    //const searchQuery = genres.map( genre => `genre:${genre}`).join(' OR ');
 
     try {
-        // Make the request to the spotify API
-        const response = await axios.get(`https://api.spotify.com/v1/search?q=${encodeURIComponent(searchQuery)}&type=album&limit=20`, {
-          headers: {
-            'Authorization': `Bearer ${access_token}`,
-          },
-        });
-        
-        // Response
-         console.log('Respuesta de Spotify:', response.data.albums);
+        const genre = genres[0]; // Last.fm solo permite buscar por un género a la vez
+        const apiKey = process.env.LAST_FM_API_KEY; // Asegúrate de configurar esta clave en tus variables de entorno
 
-        // Send the response with the albums
-        return new Response(JSON.stringify(response.data.albums.items), {
-          status: 200,
-          headers: { 'Content-Type': 'application/json' },
+        // Realizar la solicitud a la API de Last.fm
+        const response = await axios.get(`http://ws.audioscrobbler.com/2.0/?method=tag.gettopalbums&tag=${encodeURIComponent(genre)}&api_key=${apiKey}&format=json`);
+
+        const albums = response.data.albums.album.slice(0, 5).map(album => ({
+            name: album.name,
+            artist: album.artist.name,
+            url: album.url,
+            image: album.image.find(img => img.size === 'large')['#text'],
+        }));
+
+        console.log(albums);
+
+        if (albums.length === 0) {
+            return new Response(JSON.stringify({ error: 'No albums found for the specified genre' }), {
+                status: 404,
+                headers: { 'Content-Type': 'application/json' },
+            });
+        }
+
+        // Enviar la respuesta con los álbumes
+        return new Response(JSON.stringify(albums), {
+            status: 200,
+            headers: { 'Content-Type': 'application/json' },
         });
 
-      } catch (error) {
+    } catch (error) {
         // Manejar errores de manera específica
         if (error.response) {
-            // Errores específicos de la respuesta de la API de Spotify
-            console.error('Error de Spotify:', error.response.data);
-            return res.status(error.response.status).json({ error: error.response.data });
+            console.error('Error de Last.fm:', error.response.data);
+            return new Response(JSON.stringify({ error: error.response.data }), {
+                status: error.response.status,
+                headers: { 'Content-Type': 'application/json' },
+            });
         } else {
-            // Errores de la solicituds
             console.error('Error en la solicitud:', error.message);
-            return res.status(500).json({ error: 'Failed to fetch albums' });
+            return new Response(JSON.stringify({ error: 'Failed to fetch albums' }), {
+                status: 500,
+                headers: { 'Content-Type': 'application/json' },
+            });
         }
     }
 }
