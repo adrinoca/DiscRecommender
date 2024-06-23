@@ -1,7 +1,6 @@
 // Get Token
 
 import axios from 'axios';
-import 'dotenv/config';
 
 export async function POST(req) {
   console.log('Received request for /api/get-token');

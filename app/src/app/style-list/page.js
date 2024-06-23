@@ -5,8 +5,8 @@ import axios from 'axios';
 
 export default function MusicStyles() {
   const styles = [
-    { emoji: '😀', label: 'POP' },
-    { emoji: '🤔', label: 'HIP HOP' },
+    { emoji: '😀', label: 'alternative' },
+    { emoji: '🤔', label: 'anime' },
     { emoji: '😔', label: 'EDM' },
     { emoji: '😂', label: 'Rock & Roll' },
     { emoji: '😢', label: 'Latin' },
