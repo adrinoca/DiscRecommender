@@ -86,30 +86,34 @@ body {
   @apply mt-16;
 }
 
-.text-pastel-blue {
-  color: #AEC6CF; 
+.bg-gray-100 {
+  background-color: #f7f7f7;
 }
 
-.bg-pastel-blue {
-  background-color: #AEC6CF;
+.text-gray-500 {
+  color: #737373;
 }
 
-.text-pastel-cream {
-  color: #FFFDD0;
+.text-gray-600 {
+  color: #595959;
 }
 
-.bg-pastel-cream {
-  background-color: #FFFDD0;
+.text-black {
+  color: #000000;
 }
 
-.text-pastel-pink {
-  color: #FFB6C1; 
+.border-gray-200 {
+  border-color: #d1d1d1;
 }
 
-.bg-pastel-pink {
-  background-color: #FFB6C1;
+.bg-white {
+  background-color: #ffffff;
 }
 
-.bg-gradient-to-br {
-  background-image: linear-gradient(to bottom right, #FFB6C1, #FFFDD0, #AEC6CF);
+.shadow-lg {
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.hover\\:scale-105:hover {
+  transform: scale(1.05);
 }
