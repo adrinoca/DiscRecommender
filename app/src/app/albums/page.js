@@ -1,17 +1,54 @@
 'use client';
 import { useEffect, useState } from 'react';
-import axios from axios;
+import axios from 'axios';
 import "../ui/globals.css";
 
 export default function Albums() {
   const [albums, setAlbums] = useState([]);
+  const [selectedAlbum,setselectedAlbum] = useState(null);
+  const [rating, setRating] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // Obtain stored albums
   useEffect(() => {
     const storedAlbums = sessionStorage.getItem('albums');
     if (storedAlbums) {
       setAlbums(JSON.parse(storedAlbums));
     }
   }, []);
+
+  // Open the modal and select an album to make a review
+  const openModal = (album) => {
+    setselectedAlbum(album);
+    setRating(0);
+    setIsModalOpen(true);
+  }
+
+  // Close the modal and select and clean the related states
+  const closeModal = (album) => {
+    setselectedAlbum(null);
+    setRating(0);
+    setIsModalOpen(false);
+  }
+
+  // Handle the punctuation 
+  const handleRatingSubmit = async() => {
+    if (rating == 0) return;
+
+    try {
+      // Send the POST request to the backend with the album ID and the punctuation
+      await axios.post('/api/submit-rating', {
+        albumId: selectedAlbum.id,
+        rating: rating,
+      });
+
+      alert('Rating submitted succesfully');
+      closeModal();
+    } catch (error) {
+      console.error('Failed to submit the rating:', error);
+    }
+
+  }
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 text-gray-800">
