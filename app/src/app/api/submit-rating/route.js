@@ -16,18 +16,27 @@ export default async function handler(req, res) {
         });
 
         const db = client.db();
-        const collection = db.collection('ratings'); 
+        const albumsCollection = db.collection('albums');
+        const ratingCollection = db.collection('ratings'); 
 
         try {
-            // Insert the punctuation in the database
-            await collection.insertOne({ albumId, rating });
-            res.status(201).json({ message: 'Rating submitted succesfully' });
-        } catch(error) {
-            res.status(500).json({ error: 'Failed to submit rating' });
-        } finally {
-            client.close(); // Close the connection with the database
+            // Check if the album already exists
+            let album = await albumsCollection.findOne({ _id: albumId });
+
+            if (!album) {
+                // If the album does not exist, create a new album document
+                album = {
+                    _id: albumId,
+                    averageRating: rating,
+                    ratingsCount: 1,
+                };
+                await albumsCollection.insertOne(album);
+            } else {
+                // If the album exists, update the average rating and count 
+                album.ratingsCount += 1;
+                album.averageRating = 
+            }
         }
-    } else {
-        res.status(405).json({ error: 'Method not allowed' });
+            
     }
 }
