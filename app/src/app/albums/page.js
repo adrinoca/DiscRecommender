@@ -32,19 +32,24 @@ export default function Albums() {
 
   // Función para manejar el envío de la puntuación.
   const handleRatingSubmit = async () => {
-    if (rating === 0) return; // Si la puntuación es 0, no hacer nada.
-
-    try {
-      // Envía una solicitud POST al backend con el ID del álbum y la puntuación.
-      await axios.post('/api/submit-rating', {
-        albumId: selectedAlbum.id,
-        rating: rating,
-      });
-
-      alert('Rating submitted successfully!'); // Mostrar alerta de éxito.
-      closeModal(); // Cerrar el modal después de enviar la puntuación.
-    } catch (error) {
-      console.error('Failed to submit rating:', error); // Mostrar error en la consola si la solicitud falla.
+    if (selectedAlbum && rating > 0) {
+      try {
+        // Envía una solicitud POST al backend con el ID del álbum y la puntuación.
+        const response = await axios.post('/api/submit-rating', {
+          albumId: selectedAlbum.id,
+          rating: rating,
+        });
+        console.log(response);
+        if (response.status === 201) {
+          alert('Rating added successfully!');
+          closeModal();
+        } else {
+          alert('Failed to add rating');
+        }
+      } catch (error) {
+        console.error('Error:', error); // Mostrar error en la consola si la solicitud falla.
+        alert('Error adding rating');
+      }
     }
   };
 
@@ -75,7 +80,7 @@ export default function Albums() {
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-            <h2 className="text-2xl font-semibold mb-4">Rate {selectedAlbum.name}</h2>
+            <h2 className="text-2xl font-semibold mb-4">Rate {selectedAlbum?.name}</h2>
             <div className="flex items-center justify-between mb-4">
               <label className="mr-2">Rating:</label>
               <input
