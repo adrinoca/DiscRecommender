@@ -15,12 +15,12 @@ export async function POST(req) {
     }
 
     // Conectamos al cliente MongoDB
-    const client = await MongoClient.connect(process.env.MONGODB_URI, {
+    const client = await MongoClient.connect(process.env.NEXT_PUBLIC_MONGODB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
 
-    const db = client.db();
+    const db = client.db('musicRatingsDB');
     const albumsCollection = db.collection('albums');
     const ratingsCollection = db.collection('ratings');
 

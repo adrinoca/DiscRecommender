@@ -36,7 +36,7 @@ export default function Albums() {
       try {
         // Envía una solicitud POST al backend con el ID del álbum y la puntuación.
         const response = await axios.post('/api/submit-rating', {
-          albumId: selectedAlbum.id,
+          albumId: selectedAlbum.name,
           rating: rating,
         });
         console.log(response);
