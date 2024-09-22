@@ -10,7 +10,7 @@ export default function Home() {
             <div className="text-2xl font-bold text-black ml-6 mr-8">Logo</div>
             <div className="flex items-center space-x-8">
               <a href="#" className="text-gray-700 hover:text-gray-500">Discover Music</a>
-              <a href="#" className="text-gray-700 hover:text-gray-500">Top Albums</a>
+              <a href="/top-albums" className="text-gray-700 hover:text-gray-500">Top Albums</a>
               <a href="#Genres" className="text-gray-700 hover:text-gray-500">Genres</a>
               <a href="#" className="text-gray-700 hover:text-gray-500">More</a>
             </div>
